@@ -11,28 +11,21 @@ export default class NewsComponent extends Component {
     };
   }
   handleNext = async () => {
-    console.log("next");
-    if (
-      this.state.page + 1 >
-      Math.ceil(this.state.totalResults / this.state.pageSize)
-    ) {
-    } else {
-      let Url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=8e04e5a4b90b471ca1ba43da8c1c393a&pageSize=9&page=${
-        this.state.page + 1
-      }`;
-      let data = await fetch(Url);
-      // console.log(data);
-      let parsedData = await data.json();
-      console.log(parsedData);
-      this.setState({
-        page: this.state.page + 1,
-        articles: parsedData.articles,
-      });
-    }
+    let Url = `https://newsapi.org/v2/top-headlines?category=business&country=in&apiKey=8e04e5a4b90b471ca1ba43da8c1c393a&pageSize=9&page=${
+      this.state.page + 1
+    }`;
+    let data = await fetch(Url);
+    // console.log(data);
+    let parsedData = await data.json();
+    console.log(parsedData);
+    this.setState({
+      page: this.state.page + 1,
+      articles: parsedData.articles,
+    });
   };
+
   handlePrevious = async () => {
-    console.log("previous");
-    let Url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=8e04e5a4b90b471ca1ba43da8c1c393a&pageSize=9&page=${
+    let Url = `https://newsapi.org/v2/top-headlines?category=business&country=in&apiKey=8e04e5a4b90b471ca1ba43da8c1c393a&pageSize=9&page=${
       this.state.page - 1
     }`;
     let data = await fetch(Url);
@@ -46,7 +39,7 @@ export default class NewsComponent extends Component {
   };
   async componentDidMount() {
     let Url =
-      "https://newsapi.org/v2/top-headlines?country=in&apiKey=8e04e5a4b90b471ca1ba43da8c1c393a&pageSize=9";
+      "https://newsapi.org/v2/top-headlines?category=business&country=in&apiKey=8e04e5a4b90b471ca1ba43da8c1c393a&pageSize=9";
     let data = await fetch(Url);
     // console.log(data);
     let parsedData = await data.json();
@@ -101,7 +94,10 @@ export default class NewsComponent extends Component {
             &larr; Previous
           </button>
           <button
-            disabled={this.state.pageSize < 9}
+            disabled={
+              this.state.page + 1 >
+              Math.ceil(this.state.totalResults / this.state.pageSize)
+            }
             type="button"
             class="btn btn-primary"
             onClick={this.handleNext}
