@@ -14,7 +14,11 @@ export default class NewsItems extends Component {
           />
           <div
             className="card-body"
-            style={{ backgroundColor: " rgb(0, 58, 109)", color: "white" }}
+            style={{
+              backgroundColor: " rgb(0, 58, 109)",
+              color: "white",
+              height: "210px",
+            }}
           >
             <h5 className="card-title">{title}...</h5>
             <p className="card-text">{description}...</p>
