@@ -20,9 +20,6 @@
 }
 
 .nav-link:hover {
-    border: 2px solid white;
-    background-color: white;
-    border-radius: 40px;
-    color: rgb(101, 5, 5);
-    font-weight: 500;
+    color: white;
+    font-weight: 400;
 }

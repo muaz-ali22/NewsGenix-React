@@ -2,15 +2,15 @@ import React, { Component } from "react";
 
 export default class NewsItems extends Component {
   render() {
-    let { title, description, imageUrl, newsUrl } = this.props;
+    let { title, description, imageUrl } = this.props;
     return (
-      <div className="container my-4 mx-3">
-        <div className="card" style={{ width: "18rem" }}>
+      <div className="container my-4 ">
+        <div className="card">
           <img
             src={imageUrl}
             className="card-img-top"
             alt="..."
-            style={{ height: "180px" }}
+            style={{ height: "190px" }}
           />
           <div
             className="card-body"
@@ -23,7 +23,7 @@ export default class NewsItems extends Component {
             <h5 className="card-title">{title}...</h5>
             <p className="card-text">{description}...</p>
             <a
-              href={newsUrl}
+              href="noreferrer"
               target="_blank"
               className="btn btn-sm btn-primary"
             >

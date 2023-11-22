@@ -1,8 +1,20 @@
 import React, { Component } from "react";
 import NewsItems from "./NewsItems";
 import Spinner from "./Spinner";
-
+import { PropTypes } from "prop-types";
 export default class NewsComponent extends Component {
+  static defaultProps = {
+    country: "in",
+    pageSize: 6,
+    NewsType: "Top Headlines",
+    category: "health",
+  };
+  static propTypes = {
+    country: PropTypes.string,
+    pageSize: PropTypes.number,
+    NewsType: PropTypes.string,
+    category: PropTypes.string,
+  };
   constructor() {
     super();
     this.state = {
@@ -12,7 +24,11 @@ export default class NewsComponent extends Component {
     };
   }
   handleNext = async () => {
-    let Url = `https://newsapi.org/v2/top-headlines?category=business&country=in&apiKey=8e04e5a4b90b471ca1ba43da8c1c393a&pageSize=${
+    let Url = `https://newsapi.org/v2/top-headlines?category=${
+      this.props.category
+    }&country=${
+      this.props.country
+    }&apiKey=8e04e5a4b90b471ca1ba43da8c1c393a&pageSize=${
       this.props.pageSize
     }&page=${this.state.page + 1}`;
     this.setState({ loading: true });
@@ -28,7 +44,11 @@ export default class NewsComponent extends Component {
   };
 
   handlePrevious = async () => {
-    let Url = `https://newsapi.org/v2/top-headlines?category=business&country=in&apiKey=8e04e5a4b90b471ca1ba43da8c1c393a&pageSize=${
+    let Url = `https://newsapi.org/v2/top-headlines?category=${
+      this.props.category
+    }&country=${
+      this.props.country
+    }&apiKey=8e04e5a4b90b471ca1ba43da8c1c393a&pageSize=${
       this.props.pageSize
     }&page=${this.state.page - 1}`;
     this.setState({ loading: true });
@@ -44,7 +64,7 @@ export default class NewsComponent extends Component {
     });
   };
   async componentDidMount() {
-    let Url = `https://newsapi.org/v2/top-headlines?category=business&country=in&apiKey=8e04e5a4b90b471ca1ba43da8c1c393a&pageSize=${this.props.pageSize}`;
+    let Url = `https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=${this.props.country}&apiKey=8e04e5a4b90b471ca1ba43da8c1c393a&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
 
     let data = await fetch(Url);
@@ -80,7 +100,7 @@ export default class NewsComponent extends Component {
               return (
                 <div className="col-md-4 text-center" key={element.url}>
                   <NewsItems
-                    title={element.title ? element.title.slice(0, 35) : ""}
+                    title={element.title ? element.title.slice(0, 30) : ""}
                     description={
                       element.description
                         ? element.description.slice(0, 75)
