@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class NewsItems extends Component {
   render() {
-    let { title, description, imageUrl } = this.props;
+    let { title, description, imageUrl, authorName, publishedAt } = this.props;
     return (
       <div className="container my-4 ">
         <div className="card">
@@ -17,11 +17,15 @@ export default class NewsItems extends Component {
             style={{
               backgroundColor: " rgb(0, 58, 109)",
               color: "white",
-              height: "210px",
+              height: "250px",
             }}
           >
             <h5 className="card-title">{title}...</h5>
-            <p className="card-text">{description}...</p>
+            <p className="card-text">{description}</p>
+            <p className="card-text">{authorName}</p>
+            <p className="card-text">
+              Publish Date : {new Date(publishedAt).toDateString()}
+            </p>
             <a
               href="noreferrer"
               target="_blank"

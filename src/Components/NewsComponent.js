@@ -4,7 +4,6 @@ import Spinner from "./Spinner";
 import { PropTypes } from "prop-types";
 export default class NewsComponent extends Component {
   static defaultProps = {
-    country: "in",
     pageSize: 6,
     NewsType: "Top Headlines",
     category: "health",
@@ -28,7 +27,7 @@ export default class NewsComponent extends Component {
       this.props.category
     }&country=${
       this.props.country
-    }&apiKey=8e04e5a4b90b471ca1ba43da8c1c393a&pageSize=${
+    }&apiKey=3954445892ac411aabd78734ae2389f1&pageSize=${
       this.props.pageSize
     }&page=${this.state.page + 1}`;
     this.setState({ loading: true });
@@ -48,7 +47,7 @@ export default class NewsComponent extends Component {
       this.props.category
     }&country=${
       this.props.country
-    }&apiKey=8e04e5a4b90b471ca1ba43da8c1c393a&pageSize=${
+    }&apiKey=3954445892ac411aabd78734ae2389f1&pageSize=${
       this.props.pageSize
     }&page=${this.state.page - 1}`;
     this.setState({ loading: true });
@@ -64,7 +63,7 @@ export default class NewsComponent extends Component {
     });
   };
   async componentDidMount() {
-    let Url = `https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=${this.props.country}&apiKey=8e04e5a4b90b471ca1ba43da8c1c393a&pageSize=${this.props.pageSize}`;
+    let Url = `https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=${this.props.country}&apiKey=3954445892ac411aabd78734ae2389f1&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
 
     let data = await fetch(Url);
@@ -100,11 +99,13 @@ export default class NewsComponent extends Component {
               return (
                 <div className="col-md-4 text-center" key={element.url}>
                   <NewsItems
-                    title={element.title ? element.title.slice(0, 30) : ""}
+                    title={
+                      element.title ? element.title.slice(0, 20) : "Title Here"
+                    }
                     description={
                       element.description
-                        ? element.description.slice(0, 75)
-                        : ""
+                        ? element.description.slice(0, 60)
+                        : "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
                     }
                     imageUrl={
                       element.urlToImage
@@ -112,6 +113,12 @@ export default class NewsComponent extends Component {
                         : "https://thumbs.dreamstime.com/z/world-map-technological-background-best-internet-concept-global-business-elements-image-furnished-bright-lines-66529240.jpg?w=992"
                     }
                     newsUrl={element.url}
+                    authorName={
+                      element.author
+                        ? element.author.slice(0, 100)
+                        : "Author Name"
+                    }
+                    publishedAt={element.publishedAt}
                   />
                 </div>
               );
