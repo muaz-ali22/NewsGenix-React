@@ -62,6 +62,7 @@ export default class NewsComponent extends Component {
       articles: parsedData.articles,
     });
   };
+
   async componentDidMount() {
     let Url = `https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=${this.props.country}&apiKey=3954445892ac411aabd78734ae2389f1&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
@@ -119,6 +120,7 @@ export default class NewsComponent extends Component {
                         : "Author Name"
                     }
                     publishedAt={element.publishedAt}
+                    source={element.source.name}
                   />
                 </div>
               );
