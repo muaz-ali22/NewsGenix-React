@@ -2,8 +2,15 @@ import React, { Component } from "react";
 
 export default class NewsItems extends Component {
   render() {
-    let { title, description, imageUrl, authorName, publishedAt, source } =
-      this.props;
+    let {
+      title,
+      description,
+      imageUrl,
+      authorName,
+      publishedAt,
+      source,
+      newsUrl,
+    } = this.props;
     return (
       <div className="container my-4 ">
         <div className="card">
@@ -36,7 +43,7 @@ export default class NewsItems extends Component {
               Publish Date : {new Date(publishedAt).toDateString()}
             </p>
             <a
-              href="noreferrer"
+              href={newsUrl}
               target="_blank"
               className="btn btn-sm btn-primary"
             >

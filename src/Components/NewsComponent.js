@@ -2,32 +2,30 @@ import React, { Component } from "react";
 import NewsItems from "./NewsItems";
 import Spinner from "./Spinner";
 import { PropTypes } from "prop-types";
+import { sentenceCase } from "sentence-case";
 export default class NewsComponent extends Component {
   static defaultProps = {
     pageSize: 6,
-    NewsType: "Top Headlines",
     category: "health",
   };
   static propTypes = {
     country: PropTypes.string,
     pageSize: PropTypes.number,
-    NewsType: PropTypes.string,
     category: PropTypes.string,
   };
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       articles: [],
       loading: false,
       page: 1,
     };
+    document.title = `NewsGenix - ${sentenceCase(this.props.category)}`;
   }
   handleNext = async () => {
     let Url = `https://newsapi.org/v2/top-headlines?category=${
       this.props.category
-    }&country=${
-      this.props.country
-    }&apiKey=3954445892ac411aabd78734ae2389f1&pageSize=${
+    }&country=${this.props.country}&apiKey=${this.props.apiKey}&pageSize=${
       this.props.pageSize
     }&page=${this.state.page + 1}`;
     this.setState({ loading: true });
@@ -45,9 +43,7 @@ export default class NewsComponent extends Component {
   handlePrevious = async () => {
     let Url = `https://newsapi.org/v2/top-headlines?category=${
       this.props.category
-    }&country=${
-      this.props.country
-    }&apiKey=3954445892ac411aabd78734ae2389f1&pageSize=${
+    }&country=${this.props.country}&apiKey=${this.props.apiKey}&pageSize=${
       this.props.pageSize
     }&page=${this.state.page - 1}`;
     this.setState({ loading: true });
@@ -64,7 +60,7 @@ export default class NewsComponent extends Component {
   };
 
   async componentDidMount() {
-    let Url = `https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=${this.props.country}&apiKey=3954445892ac411aabd78734ae2389f1&pageSize=${this.props.pageSize}`;
+    let Url = `https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=${this.props.country}&apiKey=${this.props.apiKey}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
 
     let data = await fetch(Url);
@@ -90,7 +86,7 @@ export default class NewsComponent extends Component {
             color: "wheat",
           }}
         >
-          NewsGenix - {this.props.NewsType}
+          NewsGenix - Top {sentenceCase(this.props.category)} Headlines
         </h1>
         {this.state.loading && <Spinner />}
 
