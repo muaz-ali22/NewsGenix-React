@@ -6,7 +6,7 @@ import logo from "../../Images/a.png";
 export default function Navbar() {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-{dark}">
+      <nav className="navbar fixed-top navbar-expand-lg bg-{dark}">
         <div className="container-fluid">
           <img src={logo} alt="logo" className="logo" />
           <Link className="navbar-brand" to="">

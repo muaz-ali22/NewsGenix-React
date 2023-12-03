@@ -84,6 +84,7 @@ export default class NewsComponent extends Component {
             backgroundColor: "rgb(155,29,33)",
             padding: "5px",
             color: "wheat",
+            marginTop: "95px",
           }}
         >
           NewsGenix - Top {sentenceCase(this.props.category)} Headlines

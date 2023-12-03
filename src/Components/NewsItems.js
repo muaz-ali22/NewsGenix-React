@@ -30,7 +30,7 @@ export default function NewsItems(props) {
           <h5 className="card-title">
             {title}
             <span
-              class="position-absolute top-0  translate-middle badge rounded-pill bg-primary"
+              className="position-absolute top-0  translate-middle badge rounded-pill bg-primary"
               style={{ zIndex: "1", left: "50%" }}
             >
               {source}
